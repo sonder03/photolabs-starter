@@ -24,4 +24,10 @@ npm start
 ```
 
 
-Testing commit in readme
+## Final Product
+
+!["Homepage"](https://github.com/sonder03/tweeter/blob/master/docs/tweeter-page.png)
+!["Topic links"](https://github.com/sonder03/tweeter/blob/master/docs/TweetCannotBeBlank.png)
+!["favorite"](https://github.com/sonder03/tweeter/blob/master/docs/TweetCannotExceed140Characters.png)
+!["Unfavorite"](https://github.com/sonder03/tweeter/blob/master/docs/TweetCannotExceed140Characters.png)
+!["Big ad Similar pic"](https://github.com/sonder03/tweeter/blob/master/docs/TweetCannotExceed140Characters.png)
