@@ -1,11 +1,22 @@
-import React from 'react';
+import React, { useState } from "react";
 
-import '../styles/HomeRoute.scss';
+import PhotoList from "../components/PhotoList";
+import TopNavigationBar from "../components/TopNavigationBar";
 
-const HomeRoute = () => {
+import "../styles/HomeRoute.scss";
+
+const HomeRoute = ({ state, dispatch, photos, topics }) => {
+
   return (
+
     <div className="home-route">
-      {/* Insert React */}
+      {
+        <>
+          <TopNavigationBar topics = {topics} state = {state} dispatch={dispatch} photosAreSelected= {state.isPhotoSelected}/>
+          <PhotoList photos= {photos} state = {state} dispatch={dispatch} />
+        </>
+
+      }
     </div>
   );
 };

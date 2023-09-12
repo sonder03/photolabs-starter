@@ -5,4 +5,6 @@ const PATH = path.resolve(__dirname, "../.env." + ENV);
 
 require("dotenv").config({ path: PATH });
 
+console.log(PATH);
+
 module.exports = ENV;

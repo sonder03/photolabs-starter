@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
+import "../styles/TopicListItem.scss"; // Import the stylesheet
 
-import "../styles/TopicListItem.scss";
+import { ACTIONS } from '../hooks/useApplicationData';
 
-const sampleDataForTopicListItem = {
-  id: "1",
-  slug: "topic-1",
-  label: "Nature",
-};
+const TopicListItem = ({ topic, dispatch }) => {
 
-const TopicListItem = () => {
+  const handleItemClick = () => {
+    fetch("/api/topics/photos/"+topic.id)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+  };
+
   return (
-    <div className="topic-list__item">
-      {/* Insert React */}
+    <div className="topic-list__item" onClick={handleItemClick}>
+      <span>{topic.title}</span>
     </div>
   );
 };
 
 export default TopicListItem;
+
+
