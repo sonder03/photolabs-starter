@@ -35,7 +35,10 @@ export function reducer(state, action) {
 
     case ACTIONS.SET_PHOTO_DATA:
       
-      console.log(action.payload);
+      if( action.payload == undefined)
+      {
+        return { ...state , photoData: []};
+      }
 
       return { ...state , photoData: action.payload};
 

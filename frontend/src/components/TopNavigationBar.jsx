@@ -1,19 +1,44 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TopicList from "./TopicList";
 
 import "../styles/TopNavigationBar.scss";
 import FavBadge from "./FavBadge";
 
-const TopNavigation = ({topics, dispatch, photosAreSelected}) => { 
+import { ACTIONS } from '../hooks/useApplicationData';
 
-  return (    
-   
+const TopNavigation = ({ topics, dispatch, photosAreSelected }) => {
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const [finalSearchTerm, setFinalSearchTerm] = useState("");
+
+  useEffect(() => {
+    fetch("/api/photos/"+finalSearchTerm)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }))
+  }, [finalSearchTerm]);
+
+  const handleInputChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  return (
     <div className="top-nav-bar">
       <span className="top-nav-bar__logo">PhotoLabs</span>
 
-      <TopicList topics = {topics} dispatch={dispatch} />
+      <span>
+        <input value={searchTerm} onChange={handleInputChange} />
+        <button
+          style={{ marginLeft: "10px" }}
+          onClick={() => {
+            setFinalSearchTerm(searchTerm);
+          }}
+        >
+          Search
+        </button>
+      </span>
+      <TopicList topics={topics} dispatch={dispatch} />
 
-      <FavBadge isFavPhotoExist = { photosAreSelected } />
+      <FavBadge isFavPhotoExist={photosAreSelected} />
     </div>
   );
 };
