@@ -11,7 +11,7 @@ const PhotoList = ({state, dispatch, photos}) => {
 
     <ul className="photo-list">
       {photos.map((photoData, index) => (
-        <PhotoListItem key={index} sampleDataForPhotoListItem={photoData} state={state} dispatch={dispatch} />
+        <PhotoListItem key={photoData.id} sampleDataForPhotoListItem={photoData} state={state} dispatch={dispatch} />
       ))} 
 
     </ul>

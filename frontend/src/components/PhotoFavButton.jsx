@@ -1,29 +1,28 @@
+import React, { useState } from "react";
+import FavIcon from "./FavIcon";
+import "../styles/PhotoFavButton.scss";
 
+import { ACTIONS } from "../hooks/useApplicationData";
 
+function PhotoFavButton({ state, dispatch, PhotoId }) { 
+ 
+  let thisPhotoIsSelected = false;
 
-import React, { useState } from 'react';
-import FavIcon from './FavIcon';
-import '../styles/PhotoFavButton.scss';
+  if (state.selectedPhotos.filter((pId) => pId == PhotoId).length > 0) {
+    thisPhotoIsSelected = true;
+  }
 
-import { ACTIONS } from '../hooks/useApplicationData';
-
-function PhotoFavButton({state, dispatch, PhotoId }) {
-  
-  const [selected, setSelected] = useState(false);
+  const [selected, setSelected] = useState(thisPhotoIsSelected);  
 
   const handleClick = () => {
-        
-    let newStatus=!selected;
-    setSelected(newStatus); 
+    let newStatus = !selected;
+    setSelected(newStatus);
 
-    if(newStatus)
-    {      
+    if (newStatus) {
       dispatch({ type: ACTIONS.FAV_PHOTO_ADDED, PhotoId: PhotoId });
+    } else {
+            dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, PhotoId: PhotoId });
     }
-    else
-    {     
-      dispatch({ type: ACTIONS.FAV_PHOTO_REMOVED, PhotoId: PhotoId });
-    }   
   };
 
   return (
