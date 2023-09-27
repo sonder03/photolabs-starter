@@ -7,8 +7,9 @@ import PhotoList from "components/PhotoList";
 
 import { ACTIONS } from '../hooks/useApplicationData'; 
 
-const PhotoDetailsModal = ({ state, dispatch, photos, topics }) => {  
+const PhotoDetailsModal = ({ state, dispatch }) => {  
 
+  
 
   const handleItemClick = () => {   
 

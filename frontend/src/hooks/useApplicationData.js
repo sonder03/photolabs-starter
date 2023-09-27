@@ -1,4 +1,46 @@
-/* insert app levels actions below */
+
+
+import React, { useReducer, useEffect } from "react";
+
+
+export const useApplicationData = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+
+  // initial data 
+  fetchPhotoData(dispatch);
+  fetchTopicData(dispatch);
+
+  return { state, dispatch };
+};
+
+export const initialState = {
+  photoData: [],
+  topicData: [],
+  isModalVisible: false,
+  selectedPhoto: undefined,
+  selectedPhotos: [],
+  isPhotoSelected: false,
+};
+
+
+export const fetchPhotoData = (dispatch) => {
+  useEffect(() => {
+    fetch("/api/photos")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+  }, []);
+};
+
+export const fetchTopicData = (dispatch) => {
+  useEffect(() => {
+    fetch("/api/topics")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_TOPIC_DATA, payload: data }));
+  }, []);
+};
+
+
+
 export const ACTIONS = {
   FAV_PHOTO_ADDED: "FAV_PHOTO_ADDED",
   FAV_PHOTO_REMOVED: "FAV_PHOTO_REMOVED",
