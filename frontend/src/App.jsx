@@ -9,7 +9,7 @@ import "./App.scss";
 
 const App = () => {
   
-  const { state, dispatch } = useApplicationData();
+  const { state, dispatch, fetchPhotoDataForTopic } = useApplicationData();
   
   return (    
 
@@ -20,6 +20,7 @@ const App = () => {
           dispatch = {dispatch}
           photos={state.photoData}
           topics={state.topicData}
+          fetchPhotoDataForTopic={fetchPhotoDataForTopic}
         />
       }
       {state.isModalVisible && <PhotoDetailsModal  state = {state}          dispatch = {dispatch} />}

@@ -5,14 +5,14 @@ import TopNavigationBar from "../components/TopNavigationBar";
 
 import "../styles/HomeRoute.scss";
 
-const HomeRoute = ({ state, dispatch, photos, topics }) => {
+const HomeRoute = ({ fetchPhotoDataForTopic, state, dispatch, photos, topics }) => {
 
   return (
 
     <div className="home-route">
       {
         <>
-          <TopNavigationBar topics = {topics} state = {state} dispatch={dispatch} photosAreSelected= {state.isPhotoSelected}/>
+          <TopNavigationBar fetchPhotoDataForTopic={fetchPhotoDataForTopic} topics = {topics} dispatch={dispatch} photosAreSelected= {state.isPhotoSelected}/>
           <PhotoList photos= {photos} state = {state} dispatch={dispatch} />
         </>
 

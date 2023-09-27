@@ -10,7 +10,15 @@ export const useApplicationData = () => {
   fetchPhotoData(dispatch);
   fetchTopicData(dispatch);
 
-  return { state, dispatch };
+  const fetchPhotoDataForTopic = (topicId) => {
+    console.log(topicId);
+
+    fetch("/api/topics/photos/"+topicId)
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+  };
+
+  return { state, dispatch, fetchPhotoDataForTopic};
 };
 
 export const initialState = {
@@ -19,9 +27,8 @@ export const initialState = {
   isModalVisible: false,
   selectedPhoto: undefined,
   selectedPhotos: [],
-  isPhotoSelected: false,
+  isPhotoSelected: false,  
 };
-
 
 export const fetchPhotoData = (dispatch) => {
   useEffect(() => {
@@ -77,7 +84,7 @@ export function reducer(state, action) {
 
     case ACTIONS.SET_PHOTO_DATA:
       
-      console.log(action.payload);
+    console.log("ddddd")
 
       return { ...state , photoData: action.payload};
 

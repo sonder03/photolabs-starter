@@ -3,12 +3,11 @@ import "../styles/TopicListItem.scss"; // Import the stylesheet
 
 import { ACTIONS } from '../hooks/useApplicationData';
 
-const TopicListItem = ({ topic, dispatch }) => {
+const TopicListItem = ({fetchPhotoDataForTopic, topic }) => {
 
   const handleItemClick = () => {
-    fetch("/api/topics/photos/"+topic.id)
-      .then((response) => response.json())
-      .then((data) => dispatch({ type: ACTIONS.SET_PHOTO_DATA, payload: data }));
+    
+    fetchPhotoDataForTopic(topic.id)    
   };
 
   return (
