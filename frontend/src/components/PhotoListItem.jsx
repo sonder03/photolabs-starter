@@ -14,8 +14,12 @@ const PhotoListItem = ({ sampleDataForPhotoListItem, state, dispatch , showLarge
   {imageCssClass+="Large"}
 
   const handleItemClick = () => {   
-
-    dispatch({ type: ACTIONS.SELECT_PHOTO, selectedPhoto: sampleDataForPhotoListItem });
+      if (!state.isModalVisible) {
+        dispatch({
+          type: ACTIONS.SELECT_PHOTO,
+          selectedPhoto: sampleDataForPhotoListItem,
+        });
+      }
   };
 
   return (
