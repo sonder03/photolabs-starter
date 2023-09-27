@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import FavIcon from "./FavIcon";
 import "../styles/PhotoFavButton.scss";
 
@@ -6,13 +6,12 @@ import { ACTIONS } from "../hooks/useApplicationData";
 
 function PhotoFavButton({ state, dispatch, PhotoId }) { 
  
-  let thisPhotoIsSelected = false;
+  useEffect(() => {
+    const thisPhotoIsSelected = state.selectedPhotos.includes(PhotoId);
+    setSelected(thisPhotoIsSelected);
+  }, [state.selectedPhotos, PhotoId]);
 
-  if (state.selectedPhotos.filter((pId) => pId == PhotoId).length > 0) {
-    thisPhotoIsSelected = true;
-  }
-
-  const [selected, setSelected] = useState(thisPhotoIsSelected);  
+  const [selected, setSelected] = useState(false);
 
   const handleClick = () => {
     let newStatus = !selected;
